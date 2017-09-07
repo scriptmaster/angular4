@@ -10,10 +10,9 @@ import { BlogService, Post } from "../../services/blog.service";
 })
 export class TagsComponent implements OnInit {
   posts: Post[];
-  blog: BlogService;
   tags: Tag[]
 
-  constructor(blog:BlogService) { this.blog = blog; }
+  constructor(private blog:BlogService) { }
 
   ngOnInit() {
     var t = new Tag;
@@ -21,7 +20,18 @@ export class TagsComponent implements OnInit {
 
     this.tags = [t,t,t];
 
-    this.posts = this.blog.posts;
+    let self = this;
+
+    this.blog.homePagePosts()
+    .subscribe(posts => {
+      console.log('posts', posts);
+      //let p = posts.json()
+      // console.log(p);
+      // self.posts = p._embedded;
+      self.posts = posts;
+    })
+
+    console.log(this.posts);
 
   }
 

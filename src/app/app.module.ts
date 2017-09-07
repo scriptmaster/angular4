@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { TagsComponent } from './components/tags/tags.component';
 
 import { BlogService } from './services/blog.service';
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { BlogService } from './services/blog.service';
     TagsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   providers: [BlogService],
   bootstrap: [AppComponent]
